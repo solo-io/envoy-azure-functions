@@ -30,8 +30,8 @@ public:
 
 private:
   inline void modifyHeaders(HeaderMap &headers) const;
-  inline std::string generateHost() const;
-  inline std::string generatePath() const;
+  inline const std::string &getHost() const;
+  inline const std::string &getPath() const;
 
   Azure::MetadataFunctionRetriever function_retriever_;
   Optional<Azure::Function> current_function_;

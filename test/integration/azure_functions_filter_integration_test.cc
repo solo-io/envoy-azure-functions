@@ -36,7 +36,7 @@ public:
       Config::Metadata::mutableMetadataValue(
           *metadata,
           Config::AzureFunctionsMetadataFilters::get().AZURE_FUNCTIONS,
-          Config::AzureFunctionsMetadataKeys::get().APP)
+          Config::AzureFunctionsMetadataKeys::get().HOST)
           .set_string_value("dummy value");
 
       // TODO(yuval-k): use consts (filename mess)
@@ -56,14 +56,11 @@ public:
           functionstructspecvalue.mutable_struct_value();
 
       (*functionsspecstruct
-            ->mutable_fields())[Config::AzureFunctionsMetadataKeys::get().APP]
-          .set_string_value("yourapp");
+            ->mutable_fields())[Config::AzureFunctionsMetadataKeys::get().HOST]
+          .set_string_value("yourapp.azurewebsites.net");
       (*functionsspecstruct
-            ->mutable_fields())[Config::AzureFunctionsMetadataKeys::get().NAME]
-          .set_string_value("function");
-      (*functionsspecstruct->mutable_fields())
-          [Config::AzureFunctionsMetadataKeys::get().API_KEY]
-              .set_string_value("ApiKey");
+            ->mutable_fields())[Config::AzureFunctionsMetadataKeys::get().PATH]
+          .set_string_value("/api/function?code=ApiKey");
     });
 
     config_helper_.addConfigModifier(

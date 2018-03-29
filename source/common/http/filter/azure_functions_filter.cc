@@ -33,19 +33,18 @@ bool AzureFunctionsFilter::retrieveFunction(
 }
 
 void AzureFunctionsFilter::modifyHeaders(HeaderMap &headers) const {
-  headers.insertHost().value(generateHost());
-  headers.insertPath().value(generatePath());
+  headers.insertHost().value().setReference(getHost());
+  headers.insertPath().value().setReference(getPath());
 }
 
-std::string AzureFunctionsFilter::generateHost() const {
+const std::string &AzureFunctionsFilter::getHost() const {
   const auto &current_function = current_function_.value();
-  return *current_function.app_ + ".azurewebsites.net";
+  return *current_function.host_;
 }
 
-std::string AzureFunctionsFilter::generatePath() const {
+const std::string &AzureFunctionsFilter::getPath() const {
   const auto &current_function = current_function_.value();
-  return "/api/" + *current_function.name_ +
-         "?code=" + *current_function.api_key_;
+  return *current_function.path_;
 }
 
 } // namespace Http

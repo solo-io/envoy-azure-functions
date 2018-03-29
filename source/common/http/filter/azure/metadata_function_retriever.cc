@@ -21,14 +21,12 @@ Optional<Function> MetadataFunctionRetriever::getFunction(
 
   const ProtobufWkt::Struct &function_spec = *maybe_function_spec.value();
 
-  Optional<const std::string *> app = SoloMetadata::nonEmptyStringValue(
-      function_spec, Config::AzureFunctionsMetadataKeys::get().APP);
-  Optional<const std::string *> name = SoloMetadata::nonEmptyStringValue(
-      function_spec, Config::AzureFunctionsMetadataKeys::get().NAME);
-  Optional<const std::string *> api_key = SoloMetadata::nonEmptyStringValue(
-      function_spec, Config::AzureFunctionsMetadataKeys::get().API_KEY);
+  Optional<const std::string *> host = SoloMetadata::nonEmptyStringValue(
+      function_spec, Config::AzureFunctionsMetadataKeys::get().HOST);
+  Optional<const std::string *> path = SoloMetadata::nonEmptyStringValue(
+      function_spec, Config::AzureFunctionsMetadataKeys::get().PATH);
 
-  return Function::createFunction(app, name, api_key);
+  return Function::createFunction(host, path);
 }
 
 } // namespace Azure

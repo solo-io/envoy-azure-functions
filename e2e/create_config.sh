@@ -4,9 +4,16 @@
 set -e
 
 APP=$(cat ~/tmp/azure-app)
+
 ADDRESS=$APP
 ADDRESS+=".azurewebsites.net"
+
 API_KEY=$(cat ~/tmp/azure-api-key)
+
+FUNCTION_HOST=$ADDRESS
+
+FUNCTION_PATH="/api/uppercase?code="
+FUNCTION_PATH+=$API_KEY
 
 # prepare envoy config file.
 
@@ -61,8 +68,7 @@ static_resources:
         io.solo.function_router:
           functions:
             uppercase:
-              app: $APP
-              name: uppercase
-              api_key: $API_KEY
+              host: $FUNCTION_HOST
+              path: $FUNCTION_PATH
         io.solo.azure_functions: {}
 EOF
