@@ -15,22 +15,13 @@ namespace Configuration {
 typedef Http::FunctionalFilterMixin<Http::AzureFunctionsFilter>
     MixedAzureFunctionsFilter;
 
-HttpFilterFactoryCb AzureFunctionsFilterConfigFactory::createFilterFactory(
-    const Json::Object &, const std::string &, FactoryContext &) {
-  NOT_IMPLEMENTED;
-}
-
-ProtobufTypes::MessagePtr
-AzureFunctionsFilterConfigFactory::createEmptyConfigProto() {
-  return ProtobufTypes::MessagePtr{
-      new envoy::api::v2::filter::http::AzureFunctions()};
+std::string AzureFunctionsFilterConfigFactory::name() {
+  return Config::AzureFunctionsFilterNames::get().AZURE_FUNCTIONS;
 }
 
 HttpFilterFactoryCb
-AzureFunctionsFilterConfigFactory::createFilterFactoryFromProto(
-    const Protobuf::Message &config, const std::string &stat_prefix,
-    FactoryContext &context) {
-  UNREFERENCED_PARAMETER(config);
+AzureFunctionsFilterConfigFactory::createFilter(const std::string &stat_prefix,
+                                                FactoryContext &context) {
   UNREFERENCED_PARAMETER(stat_prefix);
 
   return [&context](Http::FilterChainFactoryCallbacks &callbacks) -> void {
@@ -39,10 +30,6 @@ AzureFunctionsFilterConfigFactory::createFilterFactoryFromProto(
     callbacks.addStreamDecoderFilter(
         Http::StreamDecoderFilterSharedPtr{filter});
   };
-}
-
-std::string AzureFunctionsFilterConfigFactory::name() {
-  return Config::AzureFunctionsFilterNames::get().AZURE_FUNCTIONS;
 }
 
 /**
