@@ -12,11 +12,6 @@ envoy_package()
 
 load("@envoy_api//bazel:api_build_system.bzl", "api_proto_library")
 
-api_proto_library(
-    name = "azure_functions_filter_proto",
-    srcs = ["azure_functions_filter.proto"],
-)
-
 envoy_cc_library(
     name = "filter_lib",
     repository = "@envoy",
