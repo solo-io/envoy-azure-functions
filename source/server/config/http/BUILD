@@ -16,7 +16,6 @@ envoy_cc_library(
     hdrs = ["azure_functions_filter_config_factory.h"],
     repository = "@envoy",
     deps = [
-        "//:azure_functions_filter_proto_cc",
         "//source/common/config:azure_functions_well_known_names_lib",
         "//source/common/http/filter:azure_functions_filter_lib",
         "@envoy//source/exe:envoy_common_lib",

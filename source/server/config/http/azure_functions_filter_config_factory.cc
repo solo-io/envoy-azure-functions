@@ -6,8 +6,6 @@
 #include "common/http/filter/azure_functions_filter.h"
 #include "common/http/functional_stream_decoder_base.h"
 
-#include "azure_functions_filter.pb.validate.h"
-
 namespace Envoy {
 namespace Server {
 namespace Configuration {
