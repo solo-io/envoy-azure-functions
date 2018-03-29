@@ -17,19 +17,15 @@ struct Function {
   // without a default ctor.
   Function() {}
 
-  static Optional<Function>
-  createFunction(Optional<const std::string *> app,
-                 Optional<const std::string *> name,
-                 Optional<const std::string *> api_key);
+  static Optional<Function> createFunction(Optional<const std::string *> host,
+                                           Optional<const std::string *> path);
 
-  const std::string *app_{};
-  const std::string *name_{};
-  const std::string *api_key_{};
+  const std::string *host_{};
+  const std::string *path_{};
 
 private:
-  Function(const std::string *app, const std::string *name,
-           const std::string *api_key)
-      : app_(app), name_(name), api_key_(api_key) {}
+  Function(const std::string *host, const std::string *path)
+      : host_(host), path_(path) {}
 };
 
 } // namespace Azure

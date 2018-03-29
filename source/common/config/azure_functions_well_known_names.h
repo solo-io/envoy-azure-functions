@@ -39,9 +39,8 @@ typedef ConstSingleton<AzureFunctionsMetadataFilterValues>
  */
 class AzureFunctionsMetadataKeyValues {
 public:
-  const std::string APP = "app";
-  const std::string NAME = "name";
-  const std::string API_KEY = "api_key";
+  const std::string HOST = "host";
+  const std::string PATH = "path";
 };
 
 typedef ConstSingleton<AzureFunctionsMetadataKeyValues>

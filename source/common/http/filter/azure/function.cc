@@ -5,13 +5,12 @@ namespace Http {
 namespace Azure {
 
 Optional<Function>
-Function::createFunction(Optional<const std::string *> app,
-                         Optional<const std::string *> name,
-                         Optional<const std::string *> api_key) {
-  if (!app.valid() || !name.valid() || !api_key.valid()) {
+Function::createFunction(Optional<const std::string *> host,
+                         Optional<const std::string *> path) {
+  if (!host.valid() || !path.valid()) {
     return {};
   }
-  return Optional<Function>({app.value(), name.value(), api_key.value()});
+  return Optional<Function>({host.value(), path.value()});
 }
 
 } // namespace Azure
