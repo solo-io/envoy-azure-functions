@@ -10,20 +10,20 @@ namespace Azure {
 
 using Config::SoloMetadata;
 
-Optional<Function> MetadataFunctionRetriever::getFunction(
+absl::optional<Function> MetadataFunctionRetriever::getFunction(
     const MetadataAccessor &metadataccessor) const {
 
-  Optional<const ProtobufWkt::Struct *> maybe_function_spec =
+  absl::optional<const ProtobufWkt::Struct *> maybe_function_spec =
       metadataccessor.getFunctionSpec();
-  if (!maybe_function_spec.valid()) {
+  if (!maybe_function_spec.has_value()) {
     return {};
   }
 
   const ProtobufWkt::Struct &function_spec = *maybe_function_spec.value();
 
-  Optional<const std::string *> host = SoloMetadata::nonEmptyStringValue(
+  absl::optional<const std::string *> host = SoloMetadata::nonEmptyStringValue(
       function_spec, Config::AzureFunctionsMetadataKeys::get().HOST);
-  Optional<const std::string *> path = SoloMetadata::nonEmptyStringValue(
+  absl::optional<const std::string *> path = SoloMetadata::nonEmptyStringValue(
       function_spec, Config::AzureFunctionsMetadataKeys::get().PATH);
 
   return Function::createFunction(host, path);

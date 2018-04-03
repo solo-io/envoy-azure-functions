@@ -29,7 +29,7 @@ void AzureFunctionsFilter::setDecoderFilterCallbacks(
 bool AzureFunctionsFilter::retrieveFunction(
     const MetadataAccessor &meta_accessor) {
   current_function_ = function_retriever_.getFunction(meta_accessor);
-  return current_function_.valid();
+  return current_function_.has_value();
 }
 
 void AzureFunctionsFilter::modifyHeaders(HeaderMap &headers) const {
