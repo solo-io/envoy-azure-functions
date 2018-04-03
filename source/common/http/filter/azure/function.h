@@ -4,9 +4,9 @@
 #include <string>
 #include <tuple>
 
-#include "envoy/common/optional.h"
-
 #include "common/protobuf/utility.h"
+
+#include "absl/types/optional.h"
 
 namespace Envoy {
 namespace Http {
@@ -17,8 +17,9 @@ struct Function {
   // without a default ctor.
   Function() {}
 
-  static Optional<Function> createFunction(Optional<const std::string *> host,
-                                           Optional<const std::string *> path);
+  static absl::optional<Function>
+  createFunction(absl::optional<const std::string *> host,
+                 absl::optional<const std::string *> path);
 
   const std::string *host_{};
   const std::string *path_{};

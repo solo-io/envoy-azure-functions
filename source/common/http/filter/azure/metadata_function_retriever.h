@@ -12,7 +12,8 @@ namespace Azure {
 
 class MetadataFunctionRetriever {
 public:
-  Optional<Function> getFunction(const MetadataAccessor &metadataccessor) const;
+  absl::optional<Function>
+  getFunction(const MetadataAccessor &metadataccessor) const;
 };
 
 } // namespace Azure

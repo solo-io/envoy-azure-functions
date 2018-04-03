@@ -34,7 +34,7 @@ private:
   inline const std::string &getPath() const;
 
   Azure::MetadataFunctionRetriever function_retriever_;
-  Optional<Azure::Function> current_function_;
+  absl::optional<Azure::Function> current_function_;
 };
 
 } // namespace Http
