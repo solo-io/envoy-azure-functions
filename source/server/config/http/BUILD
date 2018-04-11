@@ -18,6 +18,8 @@ envoy_cc_library(
     deps = [
         "//source/common/config:azure_functions_well_known_names_lib",
         "//source/common/http/filter:azure_functions_filter_lib",
-        "@envoy//source/exe:envoy_common_lib",
+        "@envoy//include/envoy/registry",
+        "@envoy//include/envoy/server:filter_config_interface",
+        "@envoy//source/extensions/filters/http/common:empty_http_filter_config_lib",
     ],
 )
