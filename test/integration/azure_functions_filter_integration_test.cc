@@ -32,12 +32,11 @@ public:
 
       auto *metadata = azure_functions_cluster.mutable_metadata();
 
-      // create some value to mark this cluster as Azure Functions.
       Config::Metadata::mutableMetadataValue(
           *metadata,
           Config::AzureFunctionsMetadataFilters::get().AZURE_FUNCTIONS,
           Config::AzureFunctionsMetadataKeys::get().HOST)
-          .set_string_value("dummy value");
+          .set_string_value("yourapp.azurewebsites.net");
 
       // TODO(yuval-k): use consts (filename mess)
       std::string functionalfilter = "io.solo.function_router";
@@ -55,9 +54,6 @@ public:
       ProtobufWkt::Struct *functionsspecstruct =
           functionstructspecvalue.mutable_struct_value();
 
-      (*functionsspecstruct
-            ->mutable_fields())[Config::AzureFunctionsMetadataKeys::get().HOST]
-          .set_string_value("yourapp.azurewebsites.net");
       (*functionsspecstruct
             ->mutable_fields())[Config::AzureFunctionsMetadataKeys::get().PATH]
           .set_string_value("/api/function?code=ApiKey");

@@ -13,16 +13,23 @@ using Config::SoloMetadata;
 absl::optional<Function> MetadataFunctionRetriever::getFunction(
     const MetadataAccessor &metadataccessor) const {
 
+  absl::optional<const ProtobufWkt::Struct *> maybe_upstream_spec =
+      metadataccessor.getClusterMetadata();
+  if (!maybe_upstream_spec.has_value()) {
+    return {};
+  }
+
   absl::optional<const ProtobufWkt::Struct *> maybe_function_spec =
       metadataccessor.getFunctionSpec();
   if (!maybe_function_spec.has_value()) {
     return {};
   }
 
-  const ProtobufWkt::Struct &function_spec = *maybe_function_spec.value();
-
+  const ProtobufWkt::Struct &upstream_spec = *maybe_upstream_spec.value();
   absl::optional<const std::string *> host = SoloMetadata::nonEmptyStringValue(
-      function_spec, Config::AzureFunctionsMetadataKeys::get().HOST);
+      upstream_spec, Config::AzureFunctionsMetadataKeys::get().HOST);
+
+  const ProtobufWkt::Struct &function_spec = *maybe_function_spec.value();
   absl::optional<const std::string *> path = SoloMetadata::nonEmptyStringValue(
       function_spec, Config::AzureFunctionsMetadataKeys::get().PATH);
 
