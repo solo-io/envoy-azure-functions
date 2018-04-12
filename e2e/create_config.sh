@@ -68,7 +68,7 @@ static_resources:
         io.solo.function_router:
           functions:
             uppercase:
-              host: $FUNCTION_HOST
               path: $FUNCTION_PATH
-        io.solo.azure_functions: {}
+        io.solo.azure_functions:
+          host: $FUNCTION_HOST
 EOF
