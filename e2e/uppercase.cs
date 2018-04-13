@@ -18,5 +18,5 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 
     return message == null
         ? req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a message on the query string or in the request body")
-        : req.CreateResponse(HttpStatusCode.OK, message.ToUpper());
+        : new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent(message.ToUpper()) };
 }
