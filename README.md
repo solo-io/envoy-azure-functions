@@ -33,7 +33,7 @@ $ CXX=clang++-5.0 CC=clang-5.0 bazel test -c dbg --config=clang-tsan //test/inte
 
 ## E2E
 
-For the e2e test, your Azure Function App requires a funcction named "uppercase". Its source code can be found in `e2e/uppercase.cs`.
+For the e2e test, your Azure Function App requires a function named "uppercase". Its source code can be found in `e2e/uppercase.cs`.
 
 To run the e2e test:
 
