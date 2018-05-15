@@ -2,7 +2,6 @@
 
 #include "envoy/registry/registry.h"
 
-#include "common/config/azure_functions_well_known_names.h"
 #include "common/http/filter/azure_functions_filter.h"
 #include "common/http/functional_stream_decoder_base.h"
 
@@ -13,11 +12,7 @@ namespace Configuration {
 typedef Http::FunctionalFilterMixin<Http::AzureFunctionsFilter>
     MixedAzureFunctionsFilter;
 
-std::string AzureFunctionsFilterConfigFactory::name() {
-  return Config::AzureFunctionsFilterNames::get().AZURE_FUNCTIONS;
-}
-
-HttpFilterFactoryCb
+Http::FilterFactoryCb
 AzureFunctionsFilterConfigFactory::createFilter(const std::string &stat_prefix,
                                                 FactoryContext &context) {
   UNREFERENCED_PARAMETER(stat_prefix);
