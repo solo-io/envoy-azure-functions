@@ -18,7 +18,6 @@ envoy_cc_library(
     deps = [
         "//source/common/config:azure_functions_well_known_names_lib",
         "//source/common/http/filter/azure:function_retriever_lib",
-        "@envoy//source/exe:envoy_common_lib",
         "@solo_envoy_common//source/common/http:functional_stream_decoder_base_lib",
     ],
 )
