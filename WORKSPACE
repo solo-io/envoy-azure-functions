@@ -3,7 +3,7 @@ workspace(name="azure_functions_filter")
 # Use skylark for native Git.
 load('@bazel_tools//tools/build_defs/repo:git.bzl', 'git_repository')
 
-ENVOY_SHA = "45fe83e4eb5344afd1d6a7b0017570ab459f4877"  # July 16, 2018 (http: per-stream idle timeout. (#3841))
+ENVOY_SHA = "45b90082918b4aed4e3c53a2a5cf79ba1b206505" # 2018-08-10
 
 http_archive(
     name = "envoy",
